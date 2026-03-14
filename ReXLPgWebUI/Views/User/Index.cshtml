@@ -1,0 +1,210 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="UserProfileAccountController">
+    <div class="row d-flex">
+        <div class="offset-lg-1 col-lg-2">
+            <div ng-hide="tab.passwordTab" class="d-flex flex-column justify-content-start align-items-center">
+                <img id="userProfileImg" ng-src="{{ document.userImagePreview }}" alt="Profile Image" class="mt-lg-5 img-fluid mb-2" style="max-height: 200px;" />
+                <input id="userProfile" type="file" file-model="document.userImage" preview-model="document.userImagePreview" accept="image/*" class="d-none" />
+                <a href="#" ng-click="triggerUpload('userProfile')" ng-show="tab.documentTab">Upload New Image</a>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div>
+                <div class="p-4">
+                    <h3 class="text-uppercase text-center">
+                        <span ng-show="tab.profileTab">Profile</span>
+                        <span ng-show="tab.passwordTab">Update Password</span>
+                        <span ng-show="tab.documentTab">Document Upload</span>
+                    </h3>
+                    <div class="row col-12" ng-show="tab.profileTab">
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userNameGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Name*</label>
+                                    <input id="nameUL" placeholder="Name" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userMobileGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Mobile*</label>
+                                    <input id="mobilenumber" placeholder="Mobile Number" class="form-control" type="text" maxlength="10"
+                                           ng-model="user.mobile" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userAadharGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Aadhar*</label>
+                                    <input id="aadharnumber" placeholder="Aadhar Number" class="form-control" type="text" maxlength="12"
+                                           ng-model="user.aadharNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12)">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userDOBGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Date Of Birth*</label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" id="dob" ng-model="user.dob" />
+                                        <button class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userAddressGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem15" style="height: 3.9rem;">Permenent Address*</label>
+                                    <textarea id="addressnumber" placeholder="Address" class="form-control" maxlength="100"
+                                              ng-model="user.address" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userEmConName1GroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Emergency Contact1*</label>
+                                    <input id="emCon1NameUL" placeholder="Father/Husband Name" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.emergencyContact1Name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userEmConMobile1GroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Mobile*</label>
+                                    <input id="emCon1Mobilenumber" placeholder="Mobile Number" class="form-control" type="text" maxlength="10"
+                                           ng-model="user.emergencyContact1Mobile" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userEmConName2GroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Emergency Contact2*</label>
+                                    <input id="emCon2NameUL" placeholder="Mother Name" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.emergencyContact2Name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userEmConMobile2GroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Mobile*</label>
+                                    <input id="emCon2Mobilenumber" placeholder="Mobile Number" class="form-control" type="text" maxlength="10"
+                                           ng-model="user.emergencyContact2Mobile" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="userWorkingGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Working Status*</label>
+                                    <div class="form-control">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="studentRadio" name="userType"
+                                                   ng-model="user.userType" value="Student" />
+                                            <label class="form-check-label" for="studentRadio">Student</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" id="employeeRadio" name="userType"
+                                                   ng-model="user.userType" value="Employee" />
+                                            <label class="form-check-label" for="employeeRadio">Employee</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="purposeOfStayGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">Purpose Of Stay*</label>
+                                    <input id="purposeOfStay" placeholder="Name" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.purposeOfStay" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="workingTypeGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">
+                                        <span ng-show="user.userType == 'Student'">College Name*</span>
+                                        <span ng-show="user.userType == 'Employee'">Office Name*</span>
+                                    </label>
+                                    <input id="WorkingType" placeholder="Name" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.workPlaceName" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="d-lg-flex align-items-center input-group-nonradius" id="workingIdGroupProfile">
+                                    <label class="input-group-text input-group-text-lg rem20">
+                                        <span ng-show="user.userType == 'Student'">College Id*</span>
+                                        <span ng-show="user.userType == 'Employee'">Office Id*</span>
+                                    </label>
+                                    <input id="workingId" placeholder="Id" class="form-control" type="text" maxlength="30"
+                                           ng-model="user.workingPlaceId" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-12" ng-show="tab.passwordTab">
+                        <div class="d-lg-flex align-items-center input-group-nonradius mt-4" id="userOldPasswordGroupLogin">
+                            <label class="input-group-text input-group-text-lg rem20">Old Password*</label>
+                            <input id="oldPassword" placeholder="Old Password" class="form-control" type="password" maxlength="20" ng-model="user.oldpassword">
+                        </div>
+                        <div class="d-lg-flex align-items-center input-group-nonradius mt-4" id="userPasswordGroupLogin">
+                            <label class="input-group-text input-group-text-lg rem20">New Password*</label>
+                            <input id="nPassword" placeholder="New Password" class="form-control" type="password" maxlength="20" ng-model="user.password">
+                        </div>
+                        <div class="d-lg-flex align-items-center input-group-nonradius mt-4" id="userConfirmPasswordGroupLogin">
+                            <label class="input-group-text input-group-text-lg rem20">Confirm*</label>
+                            <input id="cPassword" placeholder="Confirm Password" class="form-control" type="password" maxlength="20" ng-model="user.cpassword">
+                        </div>
+                    </div>
+                    <div class="row" ng-show="tab.documentTab">
+                        <div class="col-lg-4 d-flex flex-column justify-content-start align-items-center mt-4" id="aadharFrontImageGroupDoc">
+                            <img id="aadharFrtImg" ng-src="{{ document.aadharFrontPreview}}" alt="Aadhar" class="mt-lg-5 img-fluid mb-2" style="max-height: 200px;" />
+                            <input id="aadharFront" type="file" file-model="document.aadharFront" preview-model="document.aadharFrontPreview" accept="image/*" class="d-none" />
+                            <a href="#" ng-click="triggerUpload('aadharFront')">Aadhar Front Page*</a>
+                        </div>
+                        <div class="col-lg-4 d-flex flex-column justify-content-start align-items-center mt-4" id="aadharBackImageGroupDoc">
+                            <img id="aadharBckImg" ng-src="{{ document.aadharBackPreview || aadharBackImageURL }}" alt="Aadhar" class="mt-lg-5 img-fluid mb-2" style="max-height: 200px;" />
+                            <input id="aadharBack" type="file" file-model="document.aadharBack" preview-model="document.aadharBackPreview" accept="image/*" class="d-none" />
+                            <a href="#" ng-click="triggerUpload('aadharBack')">Aadhar Back Page*</a>
+                        </div>
+                        <div class="col-lg-4 d-flex flex-column justify-content-start align-items-center mt-4" id="workImageGroupDoc">
+                            <img id="workIdImg" ng-src="{{ document.workIdPreview || workIdImageURL }}" alt="Work" class="mt-lg-5 img-fluid mb-2" style="max-height: 200px;" />
+                            <input id="workId" type="file" file-model="document.workId" preview-model="document.workIdPreview" accept="image/*" class="d-none" />
+                            <a href="#" ng-click="triggerUpload('workId')">
+                                <span ng-show="user.userType == 'Student'">College ID*</span>
+                                <span ng-show="user.userType == 'Employee'">Office Id*</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row col-12 mt-4">
+                        <div class="col-6 d-flex justify-content-end">
+                            <button type="button" class="btn btn-dark" id="userSignupBtn" ng-click="triggerSave()">
+                                Save
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <button type="button" class="btn btn-dark" id="userSignupBtn" ng-click="toggleProfileTab()">
+                                Cancel
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <div class="row col-12 mt-lg-1 mt-4" ng-show="tab.profileTab">
+                        <div class="col-6 d-flex justify-content-center justify-content-lg-start">
+                            <a href="" ng-click="togglePasswordTab()" class="fw-bold text-body"><u>Password Update</u></a>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center justify-content-lg-end">
+                            <a href="" ng-click="toggleDocumentTab();" class="fw-bold text-body"><u>Document Upload</u></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div ng-init="triggerPageLoaded()"></div>
+</div>

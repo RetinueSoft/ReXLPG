@@ -1,0 +1,184 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+:root {
+    --priClr: rgb(87, 84, 84);
+    --secClr: rgb(0, 174, 239);
+    --menuFontSize: 1.1rem;
+    --pageFontSize: 18px;
+    --h0FontSize: 4.5rem;
+    --h1FontSize: 3rem;
+    --poliBGClr1: rgb(254, 211, 227);
+    --poliBGClr2: rgb(255, 235, 209);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--priClr);
+    font-size: var(--menuFontSize);
+    font-weight: 400;
+}
+
+.enable-error-text {
+    position: relative; /* Needed for positioning the pseudo-element */
+    visibility: visible;
+    color: white;
+    padding: 1% 2%;
+    background-color: #d5006e;
+    display: inline-block; /* Ensures the pseudo-element positions properly */
+}
+
+    .enable-error-text::before {
+        content: "";
+        position: absolute;
+        bottom: 100%; /* Position above the error box */
+        left: 20px; /* Adjust this value as needed */
+        border-width: 0 6px 6px 6px;
+        border-style: solid;
+        border-color: transparent transparent #d5006e transparent;
+    }
+
+.navbar, .page {
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.page {
+    font-size: var(--pageFontSize);
+}
+
+.priClr {
+    color: var(--priClr);
+}
+
+.secClr {
+    color: var(--secClr);
+}
+
+.nav-item {
+    margin-right: 2.3rem;
+    line-height: 1.5rem;
+    text-transform: uppercase
+}
+
+.btn-pri {
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--secClr);
+    border-radius: 0.25rem;
+    width: 10rem;
+    text-align: center;
+}
+button.btn {
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    width: 10rem;
+    text-align: center;
+}
+.h1Ft {
+    font-size: var(--h1FontSize);
+}
+
+.h0Ft {
+    font-size: var(--h0FontSize);
+}
+
+.ls4px {
+    letter-spacing: 4px;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+.rotating-box {
+    max-width: 800px;
+    height: 50px;
+    background-color: #ffebd1;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.poligon {
+    position: absolute;
+    width: 90%; /* Increase width here */
+    height: 100%;
+    background: var(--poliBGClr1);
+    clip-path: polygon(0px 6%, 100% 0px, 100% 100%, 0px 94%);
+    z-index: 0;
+}
+
+.poligon2Clr {
+    background: var(--poliBGClr2);
+}
+
+.flipv {
+    transform: scaleX(-1);
+}
+
+.ind2 {
+    z-index: 2;
+}
+
+.ind1 {
+    z-index: 1;
+    position: relative;
+}
+
+.rem6dot5{
+    width:6.5rem
+}
+.rem20 {
+    width: 20rem
+}
+.rem15 {
+    width: 15rem
+}
+
+/* For lg and above — apply background and border */
+@media (max-width: 992px) {
+    .input-group-text-lg {
+        background-color: transparent;
+        border: none;
+    }
+}
+.input-group-nonradius:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-nonradius > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+

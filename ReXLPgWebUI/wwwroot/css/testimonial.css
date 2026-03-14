@@ -1,0 +1,24 @@
+
+.testimonial-section {
+    background: #f9f9f9;
+}
+
+.testimonial-card {
+    transition: transform 0.3s ease;
+    border-left: 5px solid #00aeef;
+}
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+    }
+
+.testimonial-text {
+    font-style: italic;
+    font-size: 1rem;
+    color: #333;
+}
+
+.testimonial-author strong {
+    color: #000;
+    font-weight: 600;
+}

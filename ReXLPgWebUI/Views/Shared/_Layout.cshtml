@@ -1,0 +1,131 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Configuration["PGDetail:Name"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/testimonial.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ReXLPgWebUI.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="~/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+</head>
+<body ng-app="app">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white box-shadow mb-3">
+            <div class="container-fluid" ng-controller="MenuController">
+                <a class="navbar-brand" asp-area="" asp-controller="Dashboard" asp-action="Index">
+                    <img src="~/img/happystaylogo.png" width="90%"/> @* @Configuration["PGDetail:Name"] *@
+                </a>
+
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link text-dark" href="mailto:info@gmail.com">
+                                <i class="fa-solid fa-envelope"></i> info@gmail.com
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="tel:+919943135008">
+                                <i class="fa-solid fa-phone"></i> +91 9943135008
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-item d-flex flex-md-column align-items-center" ng-href="@Url.Action("Index", "User")">
+                            <img id="profileImg" ng-init="getUserImage()" style="width: 50px; height: 50px; object-fit: cover;" alt="User" />
+                            <span style="font-size: .75rem;">@User.Identity?.Name</span>
+                        </a>
+                        <div class="nav-item d-flex flex-md-column align-items-center">
+                           <a class="nav-link text-dark">
+                                <i class="fa-solid fa-bell"></i>
+                            </a>
+                        </div>
+                    }
+                    <div class="d-flex align-items-center">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            
+                            <button class="btn btn-pri" ng-click="logoutClicked()">Logout</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-pri" ng-click="loginClicked()">Login / Enquiry</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid page">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Us</h5>
+                    <p><i class="fa-solid fa-phone icon"></i>+91 88845 18010</p>
+                    <p><i class="fa-solid fa-envelope icon"></i>info@yourstay.com</p>
+                    <p><i class="fa-solid fa-location-dot icon"></i>Next to Rathinam Grand Hall, <br />ICONIC City, Eachaneri, Coimbatore</p>
+                </div>
+
+                <div class="col-md-3 mb-4 offset-md-1">
+                    <h5>Quick Links</h5>
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">Rooms</a></p>
+                    <p><a href="#">Pricing</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                </div>
+
+                <div class="col-md-3 mb-4 offset-md-1">
+                    <h5>Follow Us</h5>
+                    <p><a href="#"><i class="fa-brands fa-facebook icon"></i>Facebook</a></p>
+                    <p><a href="#"><i class="fa-brands fa-instagram icon"></i>Instagram</a></p>
+                    <p><a href="#"><i class="fa-brands fa-whatsapp icon"></i>WhatsApp</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom mt-3">
+                &copy; 2025 - Retinue - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/angular.js/angular.min.js"></script>
+    <script src="~/js/angular-sanitize/angular-sanitize.js"></script>
+    <script src="~/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <script src="~/appjs/App.js"></script>
+    <script src="~/appjs/AppUtil.js"></script>
+    <script src="~/appjs/BaseService.service.js"></script>
+    <script src="~/appjs/UserAccount.service.js"></script>
+
+    <script src="~/appjs/Menu.controller.js"></script>
+    <script src="~/appjs/UserLoginAccount.controller.js"></script>
+    <script src="~/appjs/UserProfileAccount.controller.js"></script>
+    <script>
+        const apiBaseUrl = '@Configuration["AppSettings:ApiBaseUrl"]';
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
